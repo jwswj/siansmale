@@ -1,0 +1,32 @@
+<h1>All exercises</h1>
+
+<%= form_tag('/program') do %>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Select</th>
+      <th>Name</th>
+      <th>Picture</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @exercises.each do |exercise| %>
+    <tr>
+      <td><%= check_box_tag('exercises[]', exercise.id) %></td>
+      <td><%= exercise.name %></td>
+      <td><%= image_tag exercise.image.url(:thumb) %></td>
+      <td><%= link_to 'Show', exercise %></td>
+      <td><%= link_to 'Edit', edit_exercise_path(exercise) %></td>
+      <td><%= link_to 'Destroy', exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <div class="form-actions">
+    <%= submit_tag 'Create program', :class => 'btn btn-primary' %>
+    <%= link_to 'New Exercise', new_exercise_path, :class => 'btn btn-secondary' %>
+  </div>
+
+<% end %>
